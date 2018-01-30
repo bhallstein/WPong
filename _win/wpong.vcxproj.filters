@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Lua">
+      <UniqueIdentifier>{86a3b4c7-b144-4c4c-a57b-92905f835dd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LuaObj">
+      <UniqueIdentifier>{a9230d5b-f0c0-4b9c-abb3-71b930fc02be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Soil">
+      <UniqueIdentifier>{0a53fe6b-1241-44cf-8b41-f1ad5378e258}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="W">
+      <UniqueIdentifier>{579b873c-e5ca-4de2-a950-b01e5f6718dc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wpong.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lapi.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lauxlib.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lcode.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lctype.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\ldebug.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\ldo.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lfunc.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lgc.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\llex.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\llimits.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lmem.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lobject.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lopcodes.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lparser.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lstate.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lstring.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\ltable.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\ltm.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lua.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lua.hpp">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\luaconf.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lualib.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lundump.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lvm.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lua\lzio.h">
+      <Filter>Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\LuaObj\LuaObj.h">
+      <Filter>LuaObj</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Soil\image_DXT.h">
+      <Filter>Soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Soil\image_helper.h">
+      <Filter>Soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Soil\SOIL.h">
+      <Filter>Soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Soil\stb_image_aug.h">
+      <Filter>Soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Soil\stbi_DDS_aug.h">
+      <Filter>Soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Soil\stbi_DDS_aug_c.h">
+      <Filter>Soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Callback.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Colour.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Controller.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\DObj.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Event.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\GameState.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\GenericRetro.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Log.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\MegaTexture.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Messenger.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\MisterHeapy.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\mtrand.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Mutex.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\NavMap.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\oglInclude.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Positioner.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Rand.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Texture.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Timer.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\types.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\UIElement.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\UIView.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\UpdateTimer.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\View.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\W.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\W\Window.h">
+      <Filter>W</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PongState.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\PongView.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="wpong.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lapi.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lauxlib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lbaselib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lbitlib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lcode.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lcorolib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lctype.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\ldblib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\ldebug.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\ldo.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\ldump.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lfunc.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lgc.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\linit.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\liolib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\llex.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lmathlib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lmem.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\loadlib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lobject.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lopcodes.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\loslib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lparser.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lstate.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lstring.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lstrlib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\ltable.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\ltablib.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\ltm.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lua.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lundump.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lvm.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lua\lzio.c">
+      <Filter>Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\LuaObj\LuaObj.cpp">
+      <Filter>LuaObj</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Soil\image_DXT.c">
+      <Filter>Soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Soil\image_helper.c">
+      <Filter>Soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Soil\SOIL.c">
+      <Filter>Soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Soil\stb_image_aug.c">
+      <Filter>Soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Colour.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Controller.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\DObj.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Event.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\GameState.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\GenericRetro.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Log.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\MegaTexture.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Messenger.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\mtrand.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Mutex.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\NavMap.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Positioner.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Rand.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Texture.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Timer.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\types.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\UIElement.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\UIView.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\UpdateTimer.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\View.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\W\Window.cpp">
+      <Filter>W</Filter>
+    </ClCompile>
+    <ClCompile Include="..\PongView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="wpong.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="wpong.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
