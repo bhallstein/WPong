@@ -1,0 +1,6 @@
+[submodule "W"]
+	path = W
+	url = git@bitbucket.org:hallstein/w.git
+[submodule "LuaObj"]
+	path = LuaObj
+	url = git@bitbucket.org:hallstein/luaobj.git
