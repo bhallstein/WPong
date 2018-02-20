@@ -10,7 +10,7 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	W::createWindow(W::size(800,600), "WPong");
+	W::createWindow(W::v2i(800,600), "WPong");
 	W::pushState(new PongState);
 	W::start();
 }

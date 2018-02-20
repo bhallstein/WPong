@@ -11,9 +11,9 @@ enum lr_enum {
 struct DObjs;
 
 struct TouchAndPosition {
-  TouchAndPosition(int _id, const W::position &_pos) : touchID(_id), pos(_pos) { }
+  TouchAndPosition(int _id, W::v2f _pos) : touchID(_id), pos(_pos) { }
   int touchID;
-  W::position pos;
+  W::v2f pos;
 };
 
 class PongView : public W::View {
@@ -21,7 +21,7 @@ public:
   PongView();
   ~PongView();
 
-  void updatePosition(const W::size &);
+  void updatePosition(const W::v2i &);
   void processMouseEvent(W::Event *);
   W::EventPropagation::T keyDown(W::Event *);
   W::EventPropagation::T keyUp(W::Event *);
@@ -39,8 +39,8 @@ private:
   void incrementBallPos();
   void nudgePaddle(lr_enum lr, int dist);
   void resetBallVel() {
-    ballVelocity.x = (W::Rand::intUpTo(2) ? 4 : -4);
-    ballVelocity.y = W::Rand::intUpTo(5) - 2;
+    ballVelocity.a = (W::Rand::intUpTo(2) ? 4 : -4);
+    ballVelocity.b = W::Rand::intUpTo(5) - 2;
   }
   void incrementBall();
   void reflectH(lr_enum);
@@ -48,7 +48,7 @@ private:
 
   void incrementScore(lr_enum);
 
-  W::position ballVelocity;
+  W::v2i ballVelocity;
   bool running = false;
   int nudge_speed = 5;
   int reflectCount;
@@ -63,7 +63,7 @@ private:
   // Touch tracking
   std::vector<TouchAndPosition> touches;
   void removeTouch(int);
-  void updateTouchPosn(int, const W::position &);
+  void updateTouchPosn(int, W::v2f);
 };
 
 

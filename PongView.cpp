@@ -6,16 +6,16 @@
 struct DObjs {
   DObjs(W::View *_v) : v(_v)
   {
-    bg = new W::DRect(v, W::position(), W::size(), W::Colour::Black);
-    ball = new W::DRect(v, W::position(), W::size(), W::Colour::White);
-    lPaddle = new W::DRect(v, W::position(), W::size(), W::Colour::White);
-    rPaddle = new W::DRect(v, W::position(), W::size(), W::Colour::White);
-    separatorLine = new W::DLine(v, W::position(), W::position(), W::Colour(1,1,1,0.8));
-    lScore = new W::DText(v, W::position(), "0", W::Colour::White);
-    rScore = new W::DText(v, W::position(), "0", W::Colour::White, W::TextAlign::Right);
+    bg = new W::Rectangle(v, W::v2i(), W::v2i(), W::Colour::Black);
+    ball = new W::Rectangle(v, W::v2i(), W::v2i(), W::Colour::White);
+    lPaddle = new W::Rectangle(v, W::v2i(), W::v2i(), W::Colour::White);
+    rPaddle = new W::Rectangle(v, W::v2i(), W::v2i(), W::Colour::White);
+    separatorLine = new W::Line(v, W::v2f(), W::v2f(), W::Colour(1,1,1,0.8), 1);
+    lScore = new W::RetroText(v, W::v2f(), "0", W::Colour::White, W::TextAlign::Left);
+    rScore = new W::RetroText(v, W::v2i(), "0", W::Colour::White, W::TextAlign::Right);
 
-    transpOverlay = new W::DRect(v, W::position(), W::size(), W::Colour::TransparentBlack);
-    startText = new W::DText(v, W::position(), "press space to start", W::Colour::White, W::TextAlign::Centre);
+    transpOverlay = new W::Rectangle(v, W::v2i(), W::v2i(), W::Colour::TransparentBlack);
+    startText = new W::RetroText(v, W::v2f(), "press space to start", W::Colour::White, W::TextAlign::Centre);
   }
   ~DObjs()
   {
@@ -27,64 +27,77 @@ struct DObjs {
     delete lScore;
     delete rScore;
     delete transpOverlay;
-    delete startText;
+
+    hideStartText();
   }
-  void layOut(const W::size &sz) {
+  void hideStartText() {
+    if (startText) {
+      delete startText;
+      startText = NULL;
+    }
+  }
+
+  void layOut(const W::v2i &sz) {
     // Background
     bg->setSz(sz);
 
     // Paddle positions
-    int curPaddleHeight = PADDLE_H * sz.height;
+    int curPaddleHeight = PADDLE_H * sz.b;
     int curLPaddleVPos, curRPaddleVPos;
 
-    paddleMaxYPos = sz.height - 10 - curPaddleHeight;
+    paddleMaxYPos = sz.b - 10 - curPaddleHeight;
 
     if (performInitialLayout) {
       // Initial layout
-      curLPaddleVPos = curRPaddleVPos = (sz.height - curPaddleHeight) * 0.5;
+      curLPaddleVPos = curRPaddleVPos = (sz.b - curPaddleHeight) * 0.5;
     }
     else {
       // Check if need to move paddles up due to window smallening
-      curLPaddleVPos = lPaddle->pos.y;
-      curRPaddleVPos = rPaddle->pos.y;
+      curLPaddleVPos = lPaddle->pos.b;
+      curRPaddleVPos = rPaddle->pos.b;
       if (curLPaddleVPos > paddleMaxYPos) curLPaddleVPos = paddleMaxYPos;
       if (curRPaddleVPos > paddleMaxYPos) curRPaddleVPos = paddleMaxYPos;
     }
-    lPaddle->setPos(W::position(paddleHOffs, curLPaddleVPos));
-    rPaddle->setPos(W::position(sz.width-paddleHOffs-PADDLE_W, curRPaddleVPos));
+    lPaddle->setPos(W::v2i(paddleHOffs, curLPaddleVPos));
+    rPaddle->setPos(W::v2i(sz.a-paddleHOffs-PADDLE_W, curRPaddleVPos));
 
     // Paddle sizes
-    W::size paddleSize(PADDLE_W, curPaddleHeight);
+    W::v2i paddleSize(PADDLE_W, curPaddleHeight);
     lPaddle->setSz(paddleSize);
     rPaddle->setSz(paddleSize);
 
     // Ball
     if (performInitialLayout) {
       // Initial layout
-      ball->setPos(W::position(int((sz.width-ballSize)*0.5),int((sz.height-ballSize)*0.5)));
+      ball->setPos(W::v2i(int((sz.a-ballSize)*0.5),int((sz.a-ballSize)*0.5)));
       ball->setSz(ballSize);
     }
 
     // Sep line
-    separatorLine->setP1(W::position(sepLineHOffs, sepLineVOffs));
-    separatorLine->setP2(W::position(sz.width-sepLineHOffs, sepLineVOffs));
+    separatorLine->setP1(W::v2i(sepLineHOffs, sepLineVOffs));
+    separatorLine->setP2(W::v2i(sz.a-sepLineHOffs, sepLineVOffs));
 
     // Scores
-    lScore->setPos(W::position(scoreHOffs, scoreVOffs));
-    rScore->setPos(W::position(sz.width-scoreHOffs, scoreVOffs));
+    lScore->setPos(W::v2i(scoreHOffs, scoreVOffs));
+    rScore->setPos(W::v2i(sz.a-scoreHOffs, scoreVOffs));
 
     // Overlay shizzle
     transpOverlay->setSz(sz);
-    startText->setPos(W::position(sz.width*0.5, sz.height - 40));
+
+    if (startText) {
+      startText->setPos(W::v2i(sz.a*0.5, sz.b - 40));
+    }
 
     performInitialLayout = false;
   }
 
   W::View *v;
 
-  W::DRect *bg, *ball, *lPaddle, *rPaddle, *transpOverlay;
-  W::DLine *separatorLine;
-  W::DText *lScore, *rScore, *startText;
+  W::Rectangle *bg, *ball, *lPaddle, *rPaddle, *transpOverlay;
+  W::Line *separatorLine;
+  W::RetroText *lScore;
+  W::RetroText *rScore;
+  W::RetroText *startText;
 
   bool performInitialLayout = true;
 
@@ -103,7 +116,7 @@ struct DObjs {
 
 PongView::PongView() : W::View(W::Positioner::WholeAreaPositioner), dObjs(new DObjs(this))
 {
-  dObjs->layOut(rct.sz);
+  dObjs->layOut(rct.size);
 
 #ifdef WTARGET_IOS
   dObjs->startText->setTxt("touch to start");
@@ -118,9 +131,9 @@ PongView::~PongView()
   delete dObjs;
 }
 
-void PongView::updatePosition(const W::size &winSize) {
+void PongView::updatePosition(const W::v2i &winSize) {
   if (!running) dObjs->performInitialLayout = true;
-  dObjs->layOut(rct.sz);
+  dObjs->layOut(rct.size);
 }
 void PongView::processMouseEvent(W::Event *ev) {
   // Do things
@@ -166,9 +179,10 @@ void PongView::removeTouch(int touchID) {
     if (it->touchID == touchID) it = touches.erase(it);
     else ++it;
 }
-void PongView::updateTouchPosn(int touchID, const W::position &newpos) {
-  for (std::vector<TouchAndPosition>::iterator it = touches.begin(); it < touches.end(); ++it)
-    if (it->touchID == touchID) it->pos = newpos;
+void PongView::updateTouchPosn(int touchID, W::v2f newpos) {
+  for (auto &t : touches) {
+    if (t.touchID == touchID) t.pos = newpos;
+  }
 }
 
 void PongView::update() {
@@ -185,40 +199,40 @@ void PongView::update() {
 
   // Touch: let all current touches influence paddle movt
   for (std::vector<TouchAndPosition>::iterator it = touches.begin(); it < touches.end(); ++it) {
-    const W::position &tPos = (*it).pos;
-    lr_enum viewSector = (tPos.x < rct.sz.width * 0.5 ? KLEFT : KRIGHT);
-    const W::DRect &paddle = *(viewSector == KLEFT ? dObjs->lPaddle : dObjs->rPaddle);
-    float touchDistFromPaddleCenter = tPos.y - (paddle.pos.y+PADDLE_H*rct.sz.height*0.5);
+    const W::v2f &tPos = (*it).pos;
+    lr_enum viewSector = (tPos.a < rct.size.a * 0.5 ? KLEFT : KRIGHT);
+    const W::Rectangle &paddle = *(viewSector == KLEFT ? dObjs->lPaddle : dObjs->rPaddle);
+    float touchDistFromPaddleCenter = tPos.b - (paddle.pos.b+PADDLE_H*rct.size.b*0.5);
     nudgePaddle(viewSector, touchDistFromPaddleCenter * 0.2);
   }
 
   // Test for ball touching top/bottom
-  W::position &ballPos = dObjs->ball->pos;
-  if (ballPos.y <= dObjs->paddleMinYPos) {
-    ballPos.y = dObjs->paddleMinYPos;
+  W::v2f &ballPos = dObjs->ball->pos;
+  if (ballPos.b <= dObjs->paddleMinYPos) {
+    ballPos.b = dObjs->paddleMinYPos;
     dObjs->ball->setPos(ballPos);
     reflectV();
   }
-  else if (ballPos.y + dObjs->ballSize >= rct.sz.height - dObjs->paddleHOffs) {
-    ballPos.y = rct.sz.height - dObjs->paddleHOffs - dObjs->ballSize;
+  else if (ballPos.b + dObjs->ballSize >= rct.size.b - dObjs->paddleHOffs) {
+    ballPos.b = rct.size.b - dObjs->paddleHOffs - dObjs->ballSize;
     dObjs->ball->setPos(ballPos);
     reflectV();
   }
 
-  W::position &lPaddlePos = dObjs->lPaddle->pos;
-  W::position &rPaddlePos = dObjs->rPaddle->pos;
+  W::v2f &lPaddlePos = dObjs->lPaddle->pos;
+  W::v2f &rPaddlePos = dObjs->rPaddle->pos;
 
   // L-hand tests
-  if (ballPos.x <= dObjs->paddleHOffs + PADDLE_W) {
-    if (ballPos.y + dObjs->ballSize >= lPaddlePos.y && ballPos.y < lPaddlePos.y + PADDLE_H*rct.sz.height)
+  if (ballPos.a <= dObjs->paddleHOffs + PADDLE_W) {
+    if (ballPos.b + dObjs->ballSize >= lPaddlePos.b && ballPos.b < lPaddlePos.b + PADDLE_H*rct.size.b)
       reflectH(KLEFT);
     else
       incrementScore(KRIGHT), restart();
   }
 
   // R-hand tests
-  else if (ballPos.x + dObjs->ballSize > rct.sz.width - PADDLE_W - dObjs->paddleHOffs) {
-    if (ballPos.y + dObjs->ballSize >= rPaddlePos.y && ballPos.y < rPaddlePos.y + PADDLE_H*rct.sz.height)
+  else if (ballPos.a + dObjs->ballSize > rct.size.a - PADDLE_W - dObjs->paddleHOffs) {
+    if (ballPos.b + dObjs->ballSize >= rPaddlePos.b && ballPos.b < rPaddlePos.b + PADDLE_H*rct.size.b)
       reflectH(KRIGHT);
     else
       incrementScore(KLEFT), restart();
@@ -228,7 +242,8 @@ void PongView::update() {
 void PongView::startGame() {
   if (running) return;
   dObjs->transpOverlay->setCol(W::Colour(0,0,0,0));
-  dObjs->startText->setCol(W::Colour(0,0,0,0));
+  dObjs->hideStartText();
+
   running = true;
   restart();
 }
@@ -236,15 +251,15 @@ void PongView::restart() {
   dObjs->performInitialLayout = true;
   resetBallVel();
   reflectCount = 0;
-  dObjs->layOut(rct.sz);
+  dObjs->layOut(rct.size);
 }
 
 void PongView::incrementBallPos() {
   dObjs->ball->setPos(dObjs->ball->pos + ballVelocity);
 }
 void PongView::nudgePaddle(lr_enum lr, int dist) {
-  W::position *paddle_pos;
-  W::DRect *paddle;
+  W::v2f *paddle_pos;
+  W::Rectangle *paddle;
   if (lr == KLEFT) {
     paddle_pos = &dObjs->lPaddle->pos;
     paddle = dObjs->lPaddle;
@@ -253,31 +268,31 @@ void PongView::nudgePaddle(lr_enum lr, int dist) {
     paddle_pos = &dObjs->rPaddle->pos;
     paddle = dObjs->rPaddle;
   }
-  paddle_pos->y += dist;
-  if (paddle_pos->y < dObjs->paddleMinYPos)      paddle_pos->y = dObjs->paddleMinYPos;
-  else if (paddle_pos->y > dObjs->paddleMaxYPos) paddle_pos->y = dObjs->paddleMaxYPos;
+  paddle_pos->b += dist;
+  if (paddle_pos->b < dObjs->paddleMinYPos)      paddle_pos->b = dObjs->paddleMinYPos;
+  else if (paddle_pos->b > dObjs->paddleMaxYPos) paddle_pos->b = dObjs->paddleMaxYPos;
   paddle->setPos(*paddle_pos);
 }
 void PongView::reflectH(lr_enum lr) {
-  ballVelocity.x *= -1;
+  ballVelocity.a *= -1;
 
   // Increase speed every 2 bounces
   if(!(++reflectCount%2))
-    ballVelocity.x += (ballVelocity.x > 0 ? 2 : -2);
+    ballVelocity.a += (ballVelocity.a > 0 ? 2 : -2);
 
   // Alter vertical velocity of ball depending on where it touches the paddle
-  float paddle_height = PADDLE_H * rct.sz.height;
-  W::position *paddle_pos = &(lr == KLEFT ? dObjs->lPaddle->pos : dObjs->rPaddle->pos);
-  int v_offset_ball   = dObjs->ball->pos.y + 0.5*dObjs->ballSize;
-  int v_offset_paddle = paddle_pos->y + 0.5*paddle_height;
+  float paddle_height = PADDLE_H * rct.size.b;
+  W::v2f *paddle_pos = &(lr == KLEFT ? dObjs->lPaddle->pos : dObjs->rPaddle->pos);
+  int v_offset_ball   = dObjs->ball->pos.b + 0.5*dObjs->ballSize;
+  int v_offset_paddle = paddle_pos->b + 0.5*paddle_height;
   float ball_offset_from_paddle = float(v_offset_ball - v_offset_paddle) / paddle_height;
-  ballVelocity.y += ball_offset_from_paddle * 10;
+  ballVelocity.b += ball_offset_from_paddle * 10;
 }
 void PongView::reflectV() {
-  ballVelocity.y *= -1;
+  ballVelocity.b *= -1;
 }
 void PongView::incrementScore(lr_enum lr) {
   char s[5];
   sprintf(s, "%d", ++(lr == KLEFT ? scoreL : scoreR));
-  (lr == KLEFT ? dObjs->lScore : dObjs->rScore)->setTxt(s);
+  (lr == KLEFT ? dObjs->lScore : dObjs->rScore)->setText(s);
 }
